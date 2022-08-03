@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div *ngIf="!updateProfile">
+  <div class="wrapper">
+    <div class="profile-card js-profile-card">
+      <div class="profile-card__img">
+        <img *ngIf="userDetails.image" [src]="userDetails.image" alt="profile card">
+        <img *ngIf="!userDetails.image" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile card">
+      </div>
+      <div class="profile-card__cnt js-profile-cnt">
+        <div class="profile-card__name">{{userDetails.firstName}} {{userDetails.lastName}}</div>
+        <div class="profile-card__txt">{{userDetails.phoneNo}}</div>
+        <div class="profile-card-loc">
+          <span class="profile-card-loc__txt">
+            {{userDetails.email}}
+          </span>
+        </div>
+        <div class="profile-card-ctr">
+          <button (click)="updateProfile = true" class="profile-card__button button--blue js-message-btn">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="updateProfile" class="container bootstrap snippet">
+  <div class="row">
+    <div class="col">
+      <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="#Profile">Profile</a></li>
+        <li><a data-toggle="tab" href="#Billing">Billing Address</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="Profile">
+          <div>
+            <form [formGroup]="ProfileForm" (submit)="UpdateProfile()" class="form">
+              <div class="text-center">
+                <img *ngIf="userDetails.image" [src]="userDetails.image" class="avatar img-circle img-thumbnail" (click)="ProfileImage.click()"  alt="avatar"> 
+                <img *ngIf="!userDetails.image" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" (click)="ProfileImage.click()" alt="avatar">
+                <input type="file" class="text-center center-block file-upload" #ProfileImage (change)="onImagePicked($event)" hidden>
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label for="first_name">
+                    <h4>First name</h4>
+                  </label>
+                  <input type="text" class="form-control" id="first_name" formControlName="firstName" placeholder="firstName">
+                </div>
+                <div class="form-group">
+                  <label for="last_name">
+                    <h4>Last name</h4>
+                  </label>
+                  <input type="text" class="form-control" id="last_name" placeholder="last name" formControlName="lastName">
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label for="phone">
+                    <h4>Phone</h4>
+                  </label>
+                  <input type="text" class="form-control" id="phone" placeholder="enter phone" formControlName="phoneNo">
+                </div>
+                <div class="form-group" disabled>
+                  <label for="email">
+                    <h4>Email</h4>
+                  </label>
+                  <input  type="email" class="form-control" id="email" placeholder="you@email.com" formControlName="email">
+                </div>
+              </div>
+              <br><br>
+              <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>
+                Save</button>
+              <br><br>
+            </form>
+          </div>
+        </div>
+        <div class="tab-pane" id="Billing">
+          <h2></h2>
+          <form class="form" [formGroup]="BillingForm" (submit)="updateBillingAdd()">
+            <div class="form-group">
+                <label><h4>Address</h4></label>
+                <input type="text" class="form-control" formControlName="address" placeholder="#243/A FL Musium street">
+            </div>
+            <div class="form-group">
+                <label><h4>City</h4></label>
+                <input type="text" class="form-control"  formControlName="city" placeholder="Florida" >
+            </div>
+            <div class="form-group">
+                <label><h4>State</h4></label>
+                <input type="text" class="form-control"  formControlName="state" placeholder="Florida">
+            </div>
+            <div class="form-group">
+                <label><h4>Country</h4></label>
+                <input type="text" class="form-control"  formControlName="country" placeholder="United State Of America">
+            </div>
+            <div class="form-group">
+                <label><h4>Zip Code</h4></label>
+                <input type="text" class="form-control"  formControlName="zipCode" placeholder="564123-FL">
+            </div>
+            <div class="form-group">
+              <br>
+              <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+.mat-grid-tile-content {
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+}

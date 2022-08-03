@@ -1,0 +1,40 @@
+<div class="login d-flex align-items-center py-5">
+    <!-- Demo content-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+                <h3 class="display-4">New Product</h3>
+                <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group mb-3">
+                        <input type="text" formControlName="name"  [ngClass]="{ 'is-invalid': submitted}" placeholder="Product Name" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                        <!-- <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">Name is required</div>
+                         </div> -->
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="number" formControlName="price" [ngClass]="{ 'is-invalid': submitted }" placeholder="Price" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                        <!-- <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+                            <div *ngIf="f['price'].errors.required">Price is required</div>
+                         </div> -->
+                    </div>
+                    <div class="form-group mb-3">
+                        
+                        <input type="file" #inputImage [ngClass]="{ 'is-invalid': submitted }" placeholder="image" required="" (change)="onImagePicked($event)" hidden>
+                        <button type="button" (click)="inputImage.click()" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Upload Image</button>
+                        <!-- <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+                            <div *ngIf="f.image.errors.required">Price is required</div>
+                         </div> -->
+                    </div>
+                    <div class="form-group mb-3" hidden>
+                        <input type="text" formControlName="vendorId" [ngClass]="{ 'is-invalid': submitted}" placeholder="vendorId" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                        <!-- <div *ngIf="submitted && f.vendorId.errors" class="invalid-feedback">
+                            <div *ngIf="f.vendorId.errors.required">vendorId is required</div>
+                         </div> -->
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div><!-- End -->
+</div>

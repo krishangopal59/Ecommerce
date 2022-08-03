@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <!-- The image half -->
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+        <!-- The content half -->
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+                <!-- Demo content-->
+                <div class="container" *ngIf='mode == "login"'>
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h1 class="display-4 text-uppercase">vendor {{mode}}</h1>
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                <div class="form-group mb-3">
+                                    <input id="inputEmail" type="email" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors || InvalidEmail }" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                     </div>
+                                     <div *ngIf="InvalidEmail" class="invalid-feedback">
+                                        <div>Email must be a valid email address</div>
+                                     </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputPassword" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors || InvalidPassword}" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+
+                                     </div>
+                                     <div *ngIf="InvalidPassword" class="invalid-feedback">
+                                        <div>Password is Incorrect</div>
+
+                                     </div>
+                                </div>
+                                <!-- <div class="form-group mb-3 padding">
+                                    <input class="form-check-input" type="checkbox" formControlName='isVendor'  placeholder="vendor" id="vendorcheck">
+                                    <label class="form-check-label" for="vendorcheck">As Vendor</label>
+                                </div> -->
+                                <div class="form-group mb-3 padding">
+                                   <a class="text-uppercase" style="color:#F7444E;cursor: pointer;" [routerLink]="['/login']"><b>login as Customer</b></a>
+                                   <!-- {{form.value.isVendor}}{{mode}} -->
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">login</button>
+                                <p *ngIf="credentialError" style="color:#F7444E;"><b> Invalid Password or Email</b></p>
+                                <hr>
+                                <div class="else-form">
+                                    <h5 class="display-8">OR</h5>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" [routerLink]="['/signin/vendor']">signup</button>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+                <div class="container" *ngIf='mode == "signup"'>
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h1 class="display-4 text-uppercase">vendor Signup</h1>
+                            <form [formGroup]="SignUpForm" (ngSubmit)="SignIn()">
+                                <div class="form-group mb-3">
+                                    <input id="inputEmail" formControlName="firstName" placeholder="First Name" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputEmail" formControlName="lastName" placeholder="Last Name" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputEmail" formControlName="phoneNo" placeholder="Phone Number" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputEmail" type="email" formControlName="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputPassword" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors || InvalidPassword}" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                </div>
+                                <div class="form-group mb-3 padding">
+                                   <a class="text-uppercase" style="color:#F7444E;cursor: pointer;" [routerLink]="['/login']"><b>login as customer</b></a>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Signup</button>
+                                <p *ngIf="credentialError" style="color:#F7444E;"><b> Invalid Password or Email</b></p>
+                                <hr>
+                                <div class="else-form">
+                                    <h5 class="display-8">OR</h5>
+                                </div>
+                                <button  type="button" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" [routerLink]="['/login/vendor']">log in</button>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- End -->
+            </div>
+        </div><!-- End -->
+    </div>
+</div>

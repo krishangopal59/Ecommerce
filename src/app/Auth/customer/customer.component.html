@@ -1,0 +1,41 @@
+<div class="login" *ngIf='mode == "login"'>
+    <div class="form">
+        <h2>LOG IN</h2>
+        <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+            <input id="inputEmail" type="email" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors || InvalidEmail }" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+            </div>
+            <input id="inputPassword" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors || InvalidPassword}" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+            </div><br>
+            <a class="text-uppercase" style="color:#F7444E;cursor: pointer;" [routerLink]="['/login/vendor']"><b>login as Vendor</b></a><br><br>
+            <button type="submit" class="btn btn-secondary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
+            <p *ngIf="credentialError" style="color:#F7444E;"><b> Invalid Password or Email</b></p>
+            <hr>
+            <div class="else-form"><h5 class="display-8">OR</h5></div>
+            <button type="button" class="btn btn-secondary btn-block text-uppercase mb-2 rounded-pill shadow-sm" [routerLink]="['/signin']">SignUp</button>
+        </form>
+    </div>
+</div>
+<div class="login" *ngIf='mode == "signup"'>
+    <div class="form">
+        <h2>SIGNUP</h2>  
+        <form [formGroup]="SignUpForm" (ngSubmit)="SignIn()">      
+            <input id="inputEmail" formControlName="firstName" placeholder="First Name" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">        
+            <input id="inputEmail" formControlName="lastName" placeholder="Last Name" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">        
+            <input id="inputEmail" formControlName="phoneNo" placeholder="Phone Number" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">        
+            <input id="inputEmail" type="email" formControlName="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">        
+            <input id="inputPassword" type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors || InvalidPassword}" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+            <a class="text-uppercase" style="color:#F7444E;cursor: pointer;" [routerLink]="['/login/vendor']"><b>login as Vendor</b></a>
+            <button type="submit" class="btn btn-secondary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Signup</button>
+            <p *ngIf="credentialError" style="color:#F7444E;"><b> Invalid Password or Email</b></p>
+            <hr>
+            <div class="else-form">
+                <h5 class="display-8">OR</h5>
+            </div>
+            <button  type="button" class="btn btn-secondary btn-block text-uppercase mb-2 rounded-pill shadow-sm" [routerLink]="['/login']">login</button>
+        </form>
+    </div>
+</div>

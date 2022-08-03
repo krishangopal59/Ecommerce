@@ -1,0 +1,80 @@
+<div *ngIf="type == 'cart'">
+  
+    <div class="shopping-cart">
+      <div class="title">
+        Shopping Bag
+        <a class="alignment" [mat-dialog-close]><b>X</b></a>
+      </div>
+      <div *ngIf="cart.length > 0">
+        <div class="item" style="height:10px">
+          <div class="image">
+            Image
+          </div>
+          <div class="description">
+            Name
+          </div>
+          <div class="quantity">
+            Quantity
+          </div>
+          <div class="total-price">Price</div>
+          <div class="buttons">
+            Button
+          </div>
+        </div>
+        <div class="item" *ngFor="let item of cart">
+         
+          <div class="image">
+            <img [src]="item.productId.fileName" width="90px" height="100px" alt="" />
+          </div>
+          
+          <div class="description">
+            <span><b>{{item.productId.name}}</b></span>
+          </div>
+          
+          <div class="quantity">
+            <b>{{item.quantity}}</b>
+          </div>
+          
+          <div class="total-price">${{item.unitPrice}}</div>
+          <div class="buttons">
+            <button type="button" (click)="removeProduct(item.productId._id)" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">delete</button>
+          </div>
+        </div>
+        <div class="centerAlign">
+          Sub Total = {{this.totalCost}}<br>
+          Tax = 12%<br>
+          Total = {{(this.totalCost*112/100).toFixed(2)}}<br>
+        </div>
+        <a href="checkout">
+          <button type="button"  class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Checkout</button>
+        </a>
+      </div>
+      <div *ngIf="cart.length == 0">
+        Empty Cart
+      </div>
+    </div>
+</div>
+<div *ngIf="type == 'Update'">
+  <h1 mat-dialog-title>UPDATE PRODUCT</h1>
+    <div class="login d-flex align-items-center py-5">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-10 col-xl-7 mx-auto">
+                  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                      <div class="form-group mb-3">
+                          <input type="text" formControlName="name"  placeholder="Product Name" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                      </div>
+                      <div class="form-group mb-3">
+                          <input type="number" formControlName="price" placeholder="Price" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                      </div>
+                      <div class="form-group mb-3">
+                        <div *ngIf="imageSrc"> : image Preview <img [src]="imageSrc" alt="" width="100px"></div>
+                    </div>                   
+                      <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Submit</button>
+                      <button [mat-dialog-close] type="button" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">close</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

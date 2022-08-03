@@ -1,0 +1,12 @@
+<div *ngFor="let item of [{},{}]">
+    <h2>Shipping 1</h2>
+    <mat-grid-list [cols]="products.length" wi>
+        <div *ngIf="products">
+            <mat-grid-tile  *ngFor="let item of products">
+                <mat-grid-tile-header> <label>Name: </label>{{item.name}}</mat-grid-tile-header>
+                <img [src]="item.fileName" width='25%' alt="">
+                <mat-grid-tile-footer>  <label>Quantity: </label>{{item.quantity}}</mat-grid-tile-footer>
+            </mat-grid-tile>
+        </div>
+    </mat-grid-list>
+</div>
